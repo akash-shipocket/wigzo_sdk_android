@@ -92,12 +92,12 @@ public class TempLayoutBuilder extends Dialog implements View.OnClickListener {
         String templateType = remoteMessageData.get("type");
         try {
             JSONObject notificationData = new JSONObject(notificationDetails);
-//            String orientation = notificationData.getString("templateOrientation");
-            String orientation = "top";
+            String orientation = notificationData.getString("templateOrientation");
+
             JSONObject typeObject = new JSONObject(templateType);
             String type = typeObject.getString("type");
-//           String buttonOrientation = notificationData.getString("buttonOrientation");
-            String buttonOrientation = "vertical";
+            String buttonOrientation = notificationData.getString("buttonOrientation");
+
             switch (orientation) {
                 case TOP:
                 case BOTTOM:
