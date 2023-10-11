@@ -25,7 +25,9 @@ public class WigzoLayoutProperties {
             return R.layout.wigzo_dialog_template_6;
         } else if (layoutId.equals("007")) {
             return R.layout.wigzo_dialog_template_7;
-        } else {
+        } else if (layoutId.equals("008")) {
+            return R.layout.wigzo_dialog_template_8;
+        }else {
             return R.layout.wigzo_dialog_template_1;
         }
     }

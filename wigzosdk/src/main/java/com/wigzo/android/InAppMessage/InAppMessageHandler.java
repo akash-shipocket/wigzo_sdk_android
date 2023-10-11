@@ -174,42 +174,64 @@ public class InAppMessageHandler {
             @Override
             public void run() {
 
+
+                TempLayoutBuilder tempLayoutBuilder = null;
+
                 WigzoDialogTemplate wigzoDialogTemplate = null;
 
-                if(StringUtils.isNotEmpty(imageUrl)) {
-                    wigzoDialogTemplate
-                            = new WigzoDialogTemplate(title,
-                            body,
-                            payload,
-                            remotePicture,
-                            positiveResponseTargetActivity,
-                            negativeResponseTargetActivity,
-                            layoutId,
-                            remoteMessageData);
-                }
-                else {
-                    wigzoDialogTemplate
-                            = new WigzoDialogTemplate(title,
-                            body,
-                            payload,
-                            positiveResponseTargetActivity,
-                            negativeResponseTargetActivity,
-                            remoteMessageData);
-                }
-                wigzoDialogTemplate.setCanceledOnTouchOutside(canceledOnTouchOutside);
-                wigzoDialogTemplate.show();
+                if(layoutId.equals("008")) {
+                    tempLayoutBuilder = new TempLayoutBuilder(positiveResponseTargetActivity,
+                            negativeResponseTargetActivity, remoteMessageData);
+                    tempLayoutBuilder.setCanceledOnTouchOutside(canceledOnTouchOutside);
+                    tempLayoutBuilder.show();
 
-                wigzoDialogTemplate.setOnCancelListener(dialogInterface -> {
-                    if (null != cancelListenerContext) {
-                        cancelListenerContext.onCancel(remoteMessageData);
-                    }
-                });
+                    tempLayoutBuilder.setOnCancelListener(dialogInterface -> {
+                        if (null != cancelListenerContext) {
+                            cancelListenerContext.onCancel(remoteMessageData);
+                        }
+                    });
 
-                wigzoDialogTemplate.setOnDismissListener(dialogInterface -> {
-                    if(dismissListenerContext != null) {
-                        dismissListenerContext.onDismiss(remoteMessageData);
+                    tempLayoutBuilder.setOnDismissListener(dialogInterface -> {
+                        if(dismissListenerContext != null) {
+                            dismissListenerContext.onDismiss(remoteMessageData);
+                        }
+                    });
+                }else {
+                    if(StringUtils.isNotEmpty(imageUrl)) {
+                        wigzoDialogTemplate
+                                = new WigzoDialogTemplate(title,
+                                body,
+                                payload,
+                                remotePicture,
+                                positiveResponseTargetActivity,
+                                negativeResponseTargetActivity,
+                                layoutId,
+                                remoteMessageData);
                     }
-                });
+                    else {
+                        wigzoDialogTemplate
+                                = new WigzoDialogTemplate(title,
+                                body,
+                                payload,
+                                positiveResponseTargetActivity,
+                                negativeResponseTargetActivity,
+                                remoteMessageData);
+                    }
+                    wigzoDialogTemplate.setCanceledOnTouchOutside(canceledOnTouchOutside);
+                    wigzoDialogTemplate.show();
+
+                    wigzoDialogTemplate.setOnCancelListener(dialogInterface -> {
+                        if (null != cancelListenerContext) {
+                            cancelListenerContext.onCancel(remoteMessageData);
+                        }
+                    });
+                    wigzoDialogTemplate.setOnDismissListener(dialogInterface -> {
+                        if(dismissListenerContext != null) {
+                            dismissListenerContext.onDismiss(remoteMessageData);
+                        }
+                    });
+
+                }
             }
         });
     }
