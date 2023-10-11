@@ -122,7 +122,6 @@ public class TempLayoutBuilder extends Dialog implements View.OnClickListener {
         customNotificationLayout.setLayoutParams(new ViewGroup.LayoutParams(400, 400));
 //         Adding the text View in the Layout
         title.setText(remoteMessageData.get("title"));
-//        FrameLayout frameLayout = new FrameLayout(context);
         RelativeLayout.LayoutParams textParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
