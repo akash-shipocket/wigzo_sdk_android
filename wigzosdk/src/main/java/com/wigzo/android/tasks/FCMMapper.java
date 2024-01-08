@@ -5,6 +5,7 @@ import com.wigzo.android.helpers.Configuration;
 import com.wigzo.android.helpers.StringUtils;
 import com.wigzo.android.Wigzo;
 import com.wigzo.android.base.Task;
+import com.wigzo.android.models.DeviceInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +40,7 @@ public class FCMMapper extends Task {
         try {
             if (StringUtils.isNotEmpty(this.registrationId)) {
                 data.put("registrationId", this.registrationId);
+                data.put("deviceInfo", (new DeviceInfo()).toJson());
             }
         } catch (JSONException e) {
             e.printStackTrace();

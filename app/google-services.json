@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897712854086",
+    "project_id": "samplewigzo",
+    "storage_bucket": "samplewigzo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897712854086:android:9f63883dc186a1f4a02647",
+        "android_client_info": {
+          "package_name": "com.sample.samplewigzo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe4MjmYNrIWRW6HCgYYP4WOR9kTcbGQvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,6 +7,7 @@ import com.wigzo.android.base.Task;
 import com.wigzo.android.base.WigzoApplication;
 import com.wigzo.android.helpers.Configuration;
 import com.wigzo.android.helpers.StringUtils;
+import com.wigzo.android.helpers.WigzoLogs;
 import com.wigzo.android.helpers.WigzoSharedStorage;
 import com.wigzo.android.tasks.DeviceMapper;
 
@@ -61,5 +62,9 @@ public class Wigzo {
 
     public static void setDeviceMappingTask() {
         (new DeviceMapper()).push();
+    }
+
+    public static void isDebugMode(boolean showLogs) {
+        WigzoLogs.setIsDebug(showLogs);
     }
 }

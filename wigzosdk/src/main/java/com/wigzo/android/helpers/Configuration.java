@@ -6,7 +6,8 @@ public enum Configuration {
 
 //    BASE_URL("baseUrl", getSharedStorage().getString("BASE_URL", "https://hulk.wigzopush.com")),
 //    BASE_URL("baseUrl", BuildConfig.DEBUG ? "http://192.168.135.125:9000" : "https://app.wigzo.com"),
-    BASE_URL("baseUrl","https://app.wigzo.com"),
+    BASE_URL("baseUrl","https://app-stage.wigzo.tech"),
+    //BASE_URL("baseUrl","https://app.wigzo.com"),
 
     APP_KEY("appKey","APP_KEY"),
     DEFAULT_APP_VERSION("defaultAppVersion","1.0"),
