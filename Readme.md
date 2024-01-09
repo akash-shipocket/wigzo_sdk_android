@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://wigzo.com/wp-content/uploads/2022/11/Wigzo-logo-black-scaled.webp" height="220"/>
+  <img src="https://github.com/akash-shipocket/wigzo_sdk_android/blob/push-inapp/app/src/main/res/drawable/wigzo-logo-black-scaled.webp" height="220"/>
 </p>
 
 # Wigzo Android SDK Integration
@@ -15,7 +15,7 @@
 #### Add Wigzo SDK to your project
 > Add it in your root build.gradle at the end of repositories:
 
-```
+```groovy
 dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
@@ -26,7 +26,7 @@ dependencyResolutionManagement {
 ```
 
 > Add the dependency in your app module build.gradle
-```
+```groovy
 implementation 'com.github.wigzo00:wigzo_sdk_android:1.1.1'
 ```
 
@@ -412,7 +412,7 @@ public class MainActivity extends WigzoActivity {
  ```
 
 ***Note***: If (for some reason) you cannot extend one or all of your activities, then at the beginning of the ```onCreate()``` method, just after calling ```super.onCreate()``` method, set the context of your current activity in WigzoApplication as mentioned below:
-```
+```java
 //
 ...
 import com.wigzo.sdk.base.WigzoApplication;
