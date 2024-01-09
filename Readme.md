@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/akash-shipocket/wigzo_sdk_android/blob/push-inapp/app/src/main/res/drawable/wigzo-logo-black-scaled.webp" height="220"/>
+  <img src="https://github.com/akash-shipocket/wigzo_sdk_android/blob/push-inapp/app/src/main/res/drawable/wigzo_logo_black_scaled.webp" height="220"/>
 </p>
 
 # Wigzo Android SDK Integration
