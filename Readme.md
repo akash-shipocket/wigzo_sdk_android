@@ -1,23 +1,41 @@
-#Integration
+<p align="center">
+  <img src="https://wigzo.com/wp-content/uploads/2022/11/Wigzo-logo-black-scaled.webp" height="220"/>
+</p>
+
+# Wigzo Android SDK Integration
+[![](https://jitpack.io/v/wigzo00/wigzo_sdk_android.svg)](https://jitpack.io/#wigzo00/wigzo_sdk_android)
 
 **This article will guide you through the process of Wigzo Android SDK integration.**
 **You can integrate WigzoSDK in your app in simple steps.**
 
-####Minimum Android Version:
+#### Minimum Android Version:
 
-> minimum of API Level 21.
+> Minimum API Level 24.
 
-####Add Wigzo SDK to your project
->Add dependency in build.gradle (app level):
+#### Add Wigzo SDK to your project
+> Add it in your root build.gradle at the end of repositories:
 
->```implementation '<ADD_REPOSITORY PATH>'```
+```
+dependencyResolutionManagement {
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
 
-#Initializing Wigzo SDK
+> Add the dependency in your app module build.gradle
+```
+implementation 'com.github.wigzo00:wigzo_sdk_android:1.1.1'
+```
+
+## Initializing Wigzo SDK
 - Create a class and extend it with WigzoApplication.
 - In onCreate() method, call super.onCreate() method.
 - Initialize Wigzo SDK.
 
-######example:
+###### example:
 ```java
 package com.example.wigzosdkpocapp;
 
@@ -33,35 +51,35 @@ public class MyExtendedApplication extends WigzoApplication {
 }
 ```
 
-####Update manifest file
+#### Update manifest file
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="....>
-<application
-        android:name=".MyExtendedApplication"
-                ...
->
-<activity android:name= ......></activity>
-</application>
+	<application
+	        android:name=".MyExtendedApplication"
+	                ...
+	>
+		<activity android:name= ......></activity>
+	</application>
 </manifest>
 ```
 
 Congratulations! You have successfully integrated Wigzo SDK in your app. Let us guide you through usage of this SDK.
 
-#Using Wigzo SDK
+# Using Wigzo SDK
 
-###Setting up Events (or Activity) tracking.
+### Setting up Events (or Activity) tracking.
 
 Below API's capture event occurred for a user. You can use these API's whenever an event or activity occurs.
 
-####EventMapper
+#### EventMapper
 **To create event with only event name and value:**
 >Create instance of EventMapper.
 >Create an instance of EventData.
 >Set eventName <String> and eventValue <String>.
 >Add EventData instance to EventMapper.
 
-####EventData
+#### EventData
 **EventData includes the following information:**
 
 | fields | Description |
@@ -70,7 +88,7 @@ Below API's capture event occurred for a user. You can use these API's whenever 
 | eventValue | value of the event |
 | eventMetaData | additional information about event |
 
-####Metadata
+#### Metadata
 **To create event with additional event information :**
 > 1. Create instance of EventMetaData.
 > 2. Set this instance in EventData instance
@@ -86,7 +104,7 @@ Below API's capture event occurred for a user. You can use these API's whenever 
 | tags | Tags related to item |
 | price | Price of Item |
 
-####DeviceInfo
+#### DeviceInfo
 ***To create event with device information :***
 > 1. To add DeviceInfo, create instance of DeviceInfo.
 > 2. Set this instance in EventMapper instance.
@@ -104,7 +122,7 @@ Below API's capture event occurred for a user. You can use these API's whenever 
 
 > By default, device, os, osVersion, ipAddress and appVersion is prefilled. However, you still can set your own values by using their respective setters.
 
-####Location
+#### Location
 **To add location in DeviceInfo :**
 > 1. Create an instance of Location
 > 2. Set it to DeviceInfo instance.
@@ -159,9 +177,9 @@ EventData eventData = new EventData();
 ```
 
 ---
-###Setting up User Profile tracking.
+### Setting up User Profile tracking.
 Below API's help you capture profile of User. User’s profile should be created only once.
-####UserProfileMapper
+#### UserProfileMapper
 > Wigzo has provided a class “UserProfileMapper” which can be used to capture user's profile.
 
 **To create User profile:**
@@ -186,8 +204,8 @@ Below API's help you capture profile of User. User’s profile should be created
 **To save and send User profile data to Wigzo , following method can be used :**
 > `<userProfile_instance>.push();`
 
-####Exceptional Case :
-####EmailMapper
+#### Exceptional Case :
+#### EmailMapper
 > When User profile information is not there but only email of user is there,
 in such a cases, create an instance of EmailMapper class.
 
@@ -200,18 +218,18 @@ UserEmailMapper userEmailMapper = new UserEmailMapper(<email>);
 
 >***Note***: Please note that in this case user profile is not getting created and only email id is stored for tracking purposes.
 
-###FIREBASE
+### FIREBASE
 
-#####To integrate Firebase in your App [Click here](https://firebase.google.com/docs/cloud-messaging)
+##### To integrate Firebase in your App [Click here](https://firebase.google.com/docs/cloud-messaging)
 
 There are few events which are required to be sent to Wigzo in order to show you the correct information about the campaigns triggered from Wigzo Dashboard.
 
 First you need to map FCM token with Wigzo and then register the token.
 
-####Map FCM
+#### Map FCM
 To map FCM with Wigzo, create an instance of FCMMapper class with the FCM token and push it. Wigzo is required to be notiofied about the token every time the token is generated.
 
-####Register FCM
+#### Register FCM
 To Register FCM with Wigzo, create an instance of FCMRegister class with the FCM token and push it. This step also is mandatory whenever a new token is generated.
 
 >***Note***: Map FCM and Register FCM both are required when a new token is generated. Also Map FCM should happen before registering.
@@ -239,7 +257,7 @@ In your FCM Listener service
     }
 ```
 
-####Notifying Wigzo about the notification received:
+#### Notifying Wigzo about the notification received:
 Notifying Wigzo that the notification has been recieived by the user is important, as it helps us keep track of the data which has been sent by Wigzo to provide you with the important insights about your campaigns. To do so:
 
 - In the `onMessageReceived()` method in your FCM Listener class, crate an instance of NotificationRecieved class. It requires Organization ID and Campaign ID which came along the notification, sent via Wigzo dashboard.
@@ -277,7 +295,7 @@ Notifying Wigzo that the notification has been recieived by the user is importan
     }
 ```
 
-####Notifying Wigzo about the notification Clicked:
+#### Notifying Wigzo about the notification Clicked:
 Notifying Wigzo about the notification has been clicked by the user is another crucial step as it helps Wigzo collecting the data about the campaigns triggered from the Wigzo Dashboard. To do so:
 
 - While you are sending the notification to the Notification Manager, create an Intent which contains a target Activity (which will be opened when the notificaiton is clicked)
@@ -357,11 +375,11 @@ private void sendNotification(String messageBody, long campaignId, long organiza
 
 ***To save all the Events use the `.push()` method of the instance of that particular event.
 
-###In-App Notifications
+### In-App Notifications
 
 In-App Notifications are the pop-ups (Dialogs) which are required to be displayed when a notification (of push type : inapp or both) is received.
 
-#####An In-App notification dialog consists of the following components:
+##### An In-App notification dialog consists of the following components:
 - Image section (If template supports one).
 - Title section (notification title).
 - Body section (notification message/body).
@@ -375,7 +393,7 @@ Now in that activity your logic to take further action should be written, like r
 
 Redirection can be based on the key-value pairs received in the intent data (payload). It is recommended that you use deep links to redirect users to another screen. If deep links are not possible use appropriate key-value pairs (sent via Wigzo Dashboard) for unique identification and redirection.
 
-####Integrate In App Notifications
+#### Integrate In App Notifications
 
 To integrate In App Notifications, the very first step is to extend all your activities with WigzoActivity.
 WigzoActivity extends ```androidx.appcompat.app.AppCompatActivity```. This is necessary because, in order to display any Dialog we need to have the Context of the running activity, so that it can be run on the main UI thread. Your code should look like this:
@@ -408,7 +426,7 @@ public class <YOUR_ACTIVITY_NAME> extends AppCompatActivity {
 }
 ```
 
-####Displaying In App Notifications
+#### Displaying In App Notifications
 When a notification is sent from the Wigzo Dashboard, it contains a key name ```type```.  You can display the In App notifcation based upon its value. Possible values are ```push```, ```inapp```, ```both```.
 
 To create an In App Notification, when a notification is received, in the ```MyFirebaseMessagingService``` class (created by you), inside the onMessageReceived method create an instance of ```InAppMessageHandler``` class and call ```createNotification()``` method. ```InAppMessageHandler ``` constructor takes the following agruments,
@@ -431,51 +449,51 @@ setNegativeResponseTargetActivity(Class<? extends AppCompatActivity> negativeRes
 setLayoutID(String layoutId)
 ```
 
->#####setImageUrl(String imageUrl)
+> ##### setImageUrl(String imageUrl)
 sets the image url which will be displayed in the In App Notification Dialog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setTitle(String title)
+> ##### setTitle(String title)
 Sets the title of the notification which will be displayed in the In App Notification Dialog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setBody(String body)
+> ##### setBody(String body)
 Sets the body/message of the notification which will be displayed in the In App Notification Dialog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setPayload(JSONObject payload)
+> ##### setPayload(JSONObject payload)
 Sets the payload if the notification.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setRemotePicture(Bitmap remotePicture)
+> ##### setRemotePicture(Bitmap remotePicture)
 Sets the image of the notification which will be displayed in the In App Notification Dialog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setCanceledOnTouchOutside(boolean canceledOnTouchOutside)
+> ##### setCanceledOnTouchOutside(boolean canceledOnTouchOutside)
 Set whether the notification is supposed to be cancelled if toushed outside of the dialiog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setOnDismissContext(Context context)
+> ##### setOnDismissContext(Context context)
 Required
 Set the context of the class which implements the InAppMessageHandler.OnDismissListener.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setOnCancelContext(Context context)
+> ##### setOnCancelContext(Context context)
 Required
 Set the context of the class which implements the InAppMessageHandler.OnCancelListener.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setPositiveResponseTargetActivity(Class<? extends AppCompatActivity> positiveResponseTargetActivity)
+> ##### setPositiveResponseTargetActivity(Class<? extends AppCompatActivity> positiveResponseTargetActivity)
 Required
 Activity to be redirected to when the user clicks on the positive response of the dialog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setNegativeResponseTargetActivity(Class<? extends AppCompatActivity> negativeResponseTargetActivity)
+> ##### setNegativeResponseTargetActivity(Class<? extends AppCompatActivity> negativeResponseTargetActivity)
 Required
 Activity to be redirected to when the user clicks on the negative response of the dialog.
 ***returns***:  instance of InAppMessageHandler.
 
->#####setLayoutID(String layoutId)
+> ##### setLayoutID(String layoutId)
 Sets the layout ID of the dialog.
 ***returns***:  instance of InAppMessageHandler.
 
@@ -539,7 +557,7 @@ We internally use ```dismiss() ``` method whenever a ```positiveResponse``` or a
 
 When the dialog is cancelled, the user will not be taken to the negative response target activity, so to handle such case, it is recommended to use implement ```InAppMEssageHandler.OnCancelListener```
 
-####Notifying Wigzo that some action has been taken.
+#### Notifying Wigzo that some action has been taken.
 When a user clicks either "Ok" or "Cancel" button, a new activity is opened (if provided by you). There you can notify Wigzo that the notification has been clicked with a positive response or a negative response. In that activity you can write your own logic to further take them to some other Screen (Activity) based upon the payload or notification data received.
 
 ```java
